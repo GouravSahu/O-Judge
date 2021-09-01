@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'online_judge/index.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav class="navbar navbar-default navbar-expand">
+                <div class="container">
+
+                    <center><h1>Online Judge</h1></center>
+                
+                </div>
+              </nav>
+            
+              <div class="container">
+
+                
+                {% if question_name %}
+                    <ul>
+                    {% for que in question_name %}
+                        <li class="my-1"><a href="/online_judge/{{ que.id }}/">{{ que.Name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                      {% else %}
+                    <p>No question are available.</p>
+                {% endif %}
+            
+
+
+              </div>
+
+
+        </div>
+      
+        
+      
+    </body>
+</html>
+
+

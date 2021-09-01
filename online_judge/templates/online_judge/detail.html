@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'online_judge/detail.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav class="navbar navbar-default navbar-expand">
+                <div class="container">
+
+                    <center><h2>{{ question.Name }}</h2></center>
+                
+                </div>
+            </nav>
+            
+            <div class="container">
+                <h3>Problem Statement</h3>
+                <div>{{question.Statement}}</div>
+            </div>
+            
+            <div class="container">
+                <h3>Testcases</h3>
+                {% for test in testcases %}
+                    <h5>Input</h5>
+                    <div>{{test.Input}}</div>
+                    <h5>Output</h5>
+                    <div>{{test.Output}}</div>
+                {% endfor %}
+
+            </div>
+            
+            <div class="container">
+                <form get="post" action="">
+                    <div class="form-group" style="width: 50%;">
+                    <label class="form-label" for="customFile"><h3>Upload Code</h3></label>
+                    <input type="file" class="form-control" id="customFile" />
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+      
+
+
+
+    </body>
+</html>
+
