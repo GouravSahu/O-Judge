@@ -38,10 +38,11 @@
             </div>
             
             <div class="container">
-                <form get="post" action="">
+                <form method="POST" action="/online_judge/{{ question.id }}/{{question.id}}/" enctype="multipart/form-data">
+                    {% csrf_token %}
                     <div class="form-group" style="width: 50%;">
                     <label class="form-label" for="customFile"><h3>Upload Code</h3></label>
-                    <input type="file" class="form-control" id="customFile" />
+                    <input type="file" class="form-control" name="file" id="customFile" />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -49,9 +50,6 @@
             </div>
         </div>
       
-
-
-
     </body>
 </html>
 

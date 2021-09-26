@@ -9,11 +9,13 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,6 +28,9 @@ SECRET_KEY = 'django-insecure-poh$997a&1otlv*hw_1&km^&_5@q^lx@4_7-j6z2(j#$ry5oy$
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 
 # Application definition
@@ -77,7 +82,8 @@ WSGI_APPLICATION = 'Algo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+       'NAME': os.path.join(BASE_DIR, 'database.sqlite3'),
+        #'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -124,3 +130,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
