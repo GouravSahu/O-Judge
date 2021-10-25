@@ -11,6 +11,8 @@ from .models import Testcase
 import subprocess,os,time
 from subprocess import PIPE
 
+import filecmp
+
 
 def index(request):
     question_name=Problems.objects.all()
@@ -25,27 +27,8 @@ def detail(request,question_id):
     testcases= question.testcase_set.all()
     return render(request, 'online_judge/detail.html', {'question': question,'testcases':testcases})
 
-def calculate(name):
-    cmd="media/"+name
-    i_file=open("media/tests.txt","r")
-    args=[]
-    for line in i_file:
-        stripped_line=line.strip()
-        listofline=stripped_line.split()
-        for l in listofline:
-            args.append(l)
 
-    i_file.close()    
-    data=subprocess.Popen(["g++",cmd,"-o","a"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
-    data.communicate()
-
-    outlist=[]
-    for i in range(len(args)):
-        d = subprocess.Popen(["echo",args[i],"|","a.exe"], stdin=PIPE, stdout=subprocess.PIPE, universal_newlines=True,shell=True)  
-        outlist.append(d.communicate()[0])
-    return outlist
-
-
+    
 
 
 def finalpage(request,question_id,form_id):
@@ -53,18 +36,40 @@ def finalpage(request,question_id,form_id):
     myfile = request.FILES['file']
     fs = FileSystemStorage(location=folder) #defaults to   MEDIA_ROOT  
     filename = fs.save(myfile.name, myfile)
-    outfile=[]
-    outfile=calculate(myfile.name)
-    o_file=open("media/out.txt","r")
-    realoutlist=[]
-    for line in o_file:
-        stripped_line=line.strip()
-        listofline=stripped_line.split()
-        for l in listofline:
-            realoutlist.append(l)
     
+    cmd="media/"+ myfile.name
+    
+    data=subprocess.Popen(["docker","start", "my-gcc"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    data.communicate()
+
+    data=subprocess.Popen(["docker","cp",cmd,"my-gcc:/gourav.cpp"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    data.communicate()
+
+    data=subprocess.Popen(["docker","cp", "media/tests.txt","my-gcc:/tests.txt"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    data.communicate()
+
+    data=subprocess.Popen(["docker","cp", "media/out.txt","my-gcc:/out.txt"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    data.communicate()
+
+    data=subprocess.Popen(["docker", "exec", "my-gcc","g++","gourav.cpp", "./a.out"],stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True)
+    data.communicate()
+
+    command= 'docker exec -ti my-gcc sh -c "./a.out <tests.txt > out.txt"'
+
+    data=subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,universal_newlines=True,shell=True)
+    data.communicate()
+
+    command2= "docker cp my-gcc:out.txt media/out.txt"
+    data=subprocess.Popen(command2,stdout=subprocess.PIPE,stderr=subprocess.PIPE,universal_newlines=True,shell=True)
+    data.communicate()
+
+    f1="media/myout.txt"
+    f2="media/out.txt"
+    
+    result = filecmp.cmp(f1, f2, shallow=False)
+
     verdict=""
-    if realoutlist==outfile:
+    if result==True:
         verdict="All test cases Passed"
     else:
         verdict="Please try again"

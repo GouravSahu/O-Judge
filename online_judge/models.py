@@ -19,3 +19,10 @@ class Testcase(models.Model):
     Input=models.CharField(max_length=200)
     Output=models.CharField(max_length=200)
 
+
+'''
+class mytestfiles(models.Model):
+    Name2=models.ForeignKey(Problems, on_delete=models.CASCADE)
+    Ifile=models.FileField(upload_to='uploads/')
+    Ofile=models.FileField(upload_to='uploads/')
+'''
