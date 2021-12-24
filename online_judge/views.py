@@ -34,7 +34,7 @@ def detail(request,question_id):
 def finalpage(request,question_id,form_id):
     folder='media/'
     myfile = request.FILES['file']
-    fs = FileSystemStorage(location=folder) #defaults to   MEDIA_ROOT  
+    fs = FileSystemStorage(location=folder) #defaults to MEDIA_ROOT  
     filename = fs.save(myfile.name, myfile)
     
     cmd="media/"+ myfile.name
@@ -73,9 +73,8 @@ def finalpage(request,question_id,form_id):
         verdict="All test cases Passed"
     else:
         verdict="Please try again"
-    return render(request,'online_judge/finalpage.html',{'name':verdict})
+    return render(request,'online_judge/finalpage.html',{'name':verdict,'question':question_id})
     
-
 
 
 # Create your views here.

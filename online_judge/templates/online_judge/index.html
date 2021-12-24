@@ -15,7 +15,7 @@
             <nav class="navbar navbar-default navbar-expand">
                 <div class="container">
 
-                    <center><h1>Online Judge</h1></center>
+                    <center><h1><b>Online Judge</b></h1></center>
                 
                 </div>
               </nav>
@@ -26,7 +26,7 @@
                 {% if question_name %}
                     <ul>
                     {% for que in question_name %}
-                        <li class="my-1"><a href="/online_judge/{{ que.id }}/">{{ que.Name }}</a></li>
+                        <li class="my-1"><a href="/online_judge/{{ que.id }}/"><h3><b>{{ que.Name }}</b></h3></a></li>
                     {% endfor %}
                     </ul>
                       {% else %}

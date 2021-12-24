@@ -15,24 +15,30 @@
         <div class="wrapper">
             <nav class="navbar navbar-default navbar-expand">
                 <div class="container">
-
-                    <center><h2>{{ question.Name }}</h2></center>
-                
+                    <div class="row">
+                        <!--<div style="float:left;padding:0 ;"><a href="http://ec2-18-191-16-159.us-east-2.compute.amazonaws.com/online_judge/"><img src="home.png" class="img-fluid" alt="home" style="width:5%;height: 5%;display:inline;" title="home"></a> </div>
+                        -->
+                        <div class="pull-left"><a href="http://ec2-18-191-16-159.us-east-2.compute.amazonaws.com/online_judge/" class="d-flex align-self-center" style="color:black;"><h2><b>Home</h2></b></a></div>
+                        <center> <div class="d-flex"><h2><b>{{ question.Name }}</b></h2></div></center>
+                    </div>
                 </div>
             </nav>
             
+            
+
+
             <div class="container">
-                <h3>Problem Statement</h3>
-                <div>{{question.Statement}}</div>
+                <h3><b>Problem Statement</b></h3>
+                <div>{{question.Statement|linebreaks}}</div>
             </div>
             
             <div class="container">
-                <h3>Testcases</h3>
+                <h3><b>Testcases</b></h3>
                 {% for test in testcases %}
-                    <h5>Input</h5>
-                    <div>{{test.Input}}</div>
-                    <h5>Output</h5>
-                    <div>{{test.Output}}</div>
+                    <h4><b>Input</b></h4>
+                    <div>{{test.Input|linebreaks}}</div> 
+                    <h4><b>Output</b></h4>
+                    <div>{{test.Output|linebreaks}}</div>
                 {% endfor %}
 
             </div>
@@ -41,8 +47,8 @@
                 <form method="POST" action="/online_judge/{{ question.id }}/{{question.id}}/" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group" style="width: 50%;">
-                    <label class="form-label" for="customFile"><h3>Upload Code</h3></label>
-                    <input type="file" class="form-control" name="file" id="customFile" />
+                    <label class="form-label" for="customFile"><h3><b>Upload Code (only in c++)</b></h3></label>
+                    <input type="file" class="form-control" name="file" id="customFile" required />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
