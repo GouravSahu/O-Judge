@@ -48,7 +48,7 @@
                     {% csrf_token %}
                     <div class="form-group" style="width: 50%;">
                     <label class="form-label" for="customFile"><h3><b>Upload Code (only in c++)</b></h3></label>
-                    <input type="file" class="form-control" name="file" id="customFile" required />
+                    <input type="file" class="form-control" name="file" id="customFile" accept=".cpp" required />
                     </div>
 
                     <button type="submit" class="btn btn-primary">Submit</button>
