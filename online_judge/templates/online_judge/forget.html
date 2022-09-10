@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        {%load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'online_judge/forget.css' %}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+        
+        <div class="wrapper">
+            <nav class="navbar navbar-default navbar-expand">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-flex text-center"><h1>Update Your Password</h1></div>
+
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container d-flex">
+               
+                <form action="18/" method="POST" enctype="multipart/form-data" id="form3">
+                    {% csrf_token %}
+                    <div class="form-group d-flex">
+                    <label for="email#"><h3>Email address</h3></label>
+                    <input type="email" class="form-control" id="email#" name="email" aria-describedby="emailHelp" placeholder="Enter email" style="width:50%" required>
+                    </div>
+                   
+                    <div class="form-group d-flex">
+                    <label for="password#"><h3>New Password</h3></label>
+                    <input type="password" class="form-control" id="password#" name="password" placeholder="New Password" style="width:50%" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" form="form3">Update</button>
+        
+                </form>
+
+
+
+    </body>
+    </html>

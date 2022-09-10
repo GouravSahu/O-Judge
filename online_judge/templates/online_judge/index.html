@@ -13,20 +13,23 @@
     <body>
         <div class="wrapper">
             <nav class="navbar navbar-default navbar-expand">
-                <div class="container">
-
-                    <center><h1><b>Online Judge</b></h1></center>
+                <div class="container d-flex">
+                    <span class="pull-left d-flex">
+                    <h1 class="d-flex"><b>Online Judge</b></h1>
+                    </span>
+                    <span class="pull-right" style="margin:auto;padding:auto;"><h3><b>Hi! {{stdname}}</b></h3></span>
                 
                 </div>
               </nav>
             
-              <div class="container">
+              <div class="container d-flex">
 
                 
                 {% if question_name %}
-                    <ul>
+                    <ul class="d-flex">
                     {% for que in question_name %}
-                        <li class="my-1"><a href="/online_judge/{{ que.id }}/"><h3><b>{{ que.Name }}</b></h3></a></li>
+                        <li class="my-1" style="width:50%;"><a  href="/online_judge/login/signup/{{stdname}}/{{ que.id }}/"><h3><b>{{ que.Name }}</b>&nbsp;&nbsp;&nbsp;<span style="color:green;">({{que.Difficulty}})</span></h3></a>
+                        </li>
                     {% endfor %}
                     </ul>
                       {% else %}

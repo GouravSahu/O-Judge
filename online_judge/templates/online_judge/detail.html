@@ -12,14 +12,19 @@
 
     </head>
     <body>
+
+        {% if name %}
+
         <div class="wrapper">
             <nav class="navbar navbar-default navbar-expand">
                 <div class="container">
                     <div class="row">
                         <!--<div style="float:left;padding:0 ;"><a href="http://ec2-18-191-16-159.us-east-2.compute.amazonaws.com/online_judge/"><img src="home.png" class="img-fluid" alt="home" style="width:5%;height: 5%;display:inline;" title="home"></a> </div>
                         -->
-                        <div class="pull-left"><a href="http://ec2-18-191-16-159.us-east-2.compute.amazonaws.com/online_judge/" class="d-flex align-self-center" style="color:black;"><h2><b>Home</h2></b></a></div>
-                        <center> <div class="d-flex"><h2><b>{{ question.Name }}</b></h2></div></center>
+                       <!-- <div class="pull-left"><a href="http://ec2-18-191-16-159.us-east-2.compute.amazonaws.com/online_judge/" class="d-flex align-self-center" style="color:black;"><h2><b>Home</h2></b></a></div>
+                       -->
+                         <div class="d-flex align-self-center pull-left"><h2><b>{{ question.Name }}</b></h2></div>
+                        <div class="pull-right align-self-center"><h3><b>Hi! {{name}}</b></h3></div>
                     </div>
                 </div>
             </nav>
@@ -44,18 +49,20 @@
             </div>
             
             <div class="container">
-                <form method="POST" action="/online_judge/{{ question.id }}/{{question.id}}/" enctype="multipart/form-data">
+                <form method="POST" action="/online_judge/login/signup/index/{{ question.id }}/{{question.id}}/" enctype="multipart/form-data" id="form2">
                     {% csrf_token %}
                     <div class="form-group" style="width: 50%;">
                     <label class="form-label" for="customFile"><h3><b>Upload Code (only in c++)</b></h3></label>
                     <input type="file" class="form-control" name="file" id="customFile" accept=".cpp" required />
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" form="form2">Submit</button>
                 </form>
             </div>
         </div>
-      
+      {% else %}
+      <meta http-equiv=refresh content="3;URL=http://127.0.0.1:8000/online_judge/login/" />
+        {% endif %}
     </body>
 </html>
 

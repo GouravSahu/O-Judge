@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+              
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'online_judge/signUp.css' %}">     
+      
+      
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+      <script>
+         
+      </script>
+
+     
+   
+   </head>
+   
+   <body>
+
+        <div class="wrapper">
+            <nav class="navbar navbar-default navbar-expand">
+                <div class="container">
+                    <div class="row">
+                        <div class="d-flex text-center"><h1>Sign Up</h1></div>
+
+                    </div>
+                </div>
+            </nav>
+
+            <div class="container d-flex">
+                {% if store %}
+                <h3 style="color:red;"><b>Already a User...use different email...</b></h3>
+                {% endif %}
+                <form action="index/" method="POST" enctype="multipart/form-data" id="form1">
+                    {% csrf_token %}
+                    <div class="form-group d-flex">
+                    <label for="email#"><h3>Email address</h3></label>
+                    <input type="email" class="form-control" id="email#" aria-describedby="emailHelp" name="email" placeholder="Enter email" style="width:50%" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                   
+                    <div class="form-group d-flex">
+                    <label for="text#"><h3>Name</h3></label>
+                    <input type="text" class="form-control" id="text#" aria-describedby="emailHelp" name="name" placeholder="Enter name" style="width:50%" required>
+                    </div>
+                    
+                    <div class="form-group d-flex">
+                    <label for="password#"><h3>Password</h3></label>
+                    <input type="password" class="form-control" id="password#" name="password" placeholder="Password" style="width:50%" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" form="form1">Submit</button>
+        
+                </form>
+                <br>
+                <div>Already a user: <a href="http://127.0.0.1:8000/online_judge/login/">Click here</a></div>
+            
+            </div>
+
+        </div>
+    
+
+
+
+    </body>
+
+
+</html>

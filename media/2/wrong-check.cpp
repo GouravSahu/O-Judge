@@ -19,7 +19,7 @@ int main()
     while(t--)
     {
         int n;
-        cin>>n;
+        cin>>n
 
         cout<<rec(n)<<endl;
     }

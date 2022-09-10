@@ -1,6 +1,18 @@
+from tkinter import CASCADE
 from django.db import models
+from datetime import datetime   
+from django.utils.timezone import now 
+
 
 # Create your models here.
+
+class studentData(models.Model):
+    sEmail=models.CharField(max_length=200)
+    sName=models.CharField(max_length=200)
+    sPassword=models.CharField(max_length=100)
+
+
+
 class Problems(models.Model):
     Name=models.CharField(max_length=200)
     Statement=models.TextField()
@@ -11,8 +23,6 @@ class Problems(models.Model):
 class Solutions(models.Model):
     Name1=models.ForeignKey(Problems, on_delete=models.CASCADE)
     Verdict=models.CharField(max_length=100)
-    Submitted=models.DateTimeField('date published')
-
 
 class Testcase(models.Model):
     Name2=models.ForeignKey(Problems, on_delete=models.CASCADE)
